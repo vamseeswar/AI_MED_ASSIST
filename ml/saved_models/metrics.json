@@ -1,0 +1,18 @@
+{
+  "model_type": "TF-IDF + LogisticRegression",
+  "model_version": "1.0.0",
+  "classes": [
+    "clinical_report",
+    "general_health_information",
+    "insurance_document",
+    "laboratory_report",
+    "medical_research",
+    "other"
+  ],
+  "training_samples_count": 27,
+  "test_samples_count": 9,
+  "measured_accuracy": 0.6667,
+  "measured_precision": 0.6944,
+  "measured_recall": 0.6667,
+  "measured_f1_score": 0.637
+}

@@ -1,0 +1,108 @@
+{
+  "status": "COMPLETED",
+  "evaluated": true,
+  "timestamp": "2026-10-11T08:28:57.150963+00:00",
+  "total_benchmark_queries": 3,
+  "aggregate_metrics": {
+    "hit_rate_at_3": 0.0,
+    "retrieval_precision_at_3": 0.0,
+    "retrieval_recall_at_3": 0.0,
+    "mean_context_relevance": 0.1111,
+    "mean_answer_relevance": 0.1333,
+    "mean_citation_correctness": 1.0,
+    "mean_groundedness": 0.3333,
+    "avg_latency_ms": 4.58,
+    "total_tokens_consumed": 571
+  },
+  "query_details": [
+    {
+      "id": "eval-001",
+      "query": "What are the common clinical symptoms of Type 2 Diabetes?",
+      "retrieved_chunk_ids": [
+        "doc-01",
+        "f806dca0-e435-40df-8a4d-05d5aaa20219",
+        "a727fc19-afb8-4630-b924-ddd49c21d586"
+      ],
+      "ground_truth_chunk_ids": [
+        "doc1_c1",
+        "doc1_c2"
+      ],
+      "retrieval": {
+        "hit_rate": 0.0,
+        "precision_at_k": 0.0,
+        "recall_at_k": 0.0,
+        "mrr": 0.0
+      },
+      "context_relevance": 0.0,
+      "answer_relevance": 0.0,
+      "groundedness": 0.5,
+      "citations": {
+        "citation_count": 3,
+        "valid_citations": 3,
+        "hallucinated_citations": 0,
+        "citation_accuracy": 1.0
+      },
+      "latency_ms": 4.76,
+      "tokens_estimated": 193
+    },
+    {
+      "id": "eval-002",
+      "query": "How is Stage 1 hypertension defined in adults?",
+      "retrieved_chunk_ids": [
+        "doc-02",
+        "doc-01",
+        "f806dca0-e435-40df-8a4d-05d5aaa20219"
+      ],
+      "ground_truth_chunk_ids": [
+        "doc2_c1"
+      ],
+      "retrieval": {
+        "hit_rate": 0.0,
+        "precision_at_k": 0.0,
+        "recall_at_k": 0.0,
+        "mrr": 0.0
+      },
+      "context_relevance": 0.3333,
+      "answer_relevance": 0.4,
+      "groundedness": 0.5,
+      "citations": {
+        "citation_count": 3,
+        "valid_citations": 3,
+        "hallucinated_citations": 0,
+        "citation_accuracy": 1.0
+      },
+      "latency_ms": 3.86,
+      "tokens_estimated": 210
+    },
+    {
+      "id": "eval-003",
+      "query": "What is the biological role of High-Density Lipoprotein (HDL) cholesterol?",
+      "retrieved_chunk_ids": [
+        "doc-01",
+        "doc-03",
+        "doc-02"
+      ],
+      "ground_truth_chunk_ids": [
+        "doc3_c1"
+      ],
+      "retrieval": {
+        "hit_rate": 0.0,
+        "precision_at_k": 0.0,
+        "recall_at_k": 0.0,
+        "mrr": 0.0
+      },
+      "context_relevance": 0.0,
+      "answer_relevance": 0.0,
+      "groundedness": 0.0,
+      "citations": {
+        "citation_count": 3,
+        "valid_citations": 3,
+        "hallucinated_citations": 0,
+        "citation_accuracy": 1.0
+      },
+      "latency_ms": 5.11,
+      "tokens_estimated": 168
+    }
+  ],
+  "total_eval_run_time_ms": 14.46
+}

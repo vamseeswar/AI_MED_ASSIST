@@ -1,0 +1,94 @@
+name: MedAssist AI CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  backend-test:
+    name: Backend Lint, Security & Test Suite
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: pgvector/pgvector:pg16
+        env:
+          POSTGRES_USER: medassist_user
+          POSTGRES_PASSWORD: medassist_secure_password
+          POSTGRES_DB: medassist_test_db
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Code Quality & Lint Check
+        run: |
+          python -m pip install ruff
+          ruff check backend rag agents mcp ml dl ai tests
+
+      - name: Execute Pytest Suite with Coverage
+        env:
+          APP_ENV: test
+          SECRET_KEY: test-ci-cd-secret-key-at-least-32-chars-long
+          DATABASE_URL: sqlite:///./test_ci.db
+          LLM_PROVIDER: mock
+          EMBEDDING_PROVIDER: mock
+        run: |
+          pytest tests/ --cov=backend --cov=rag --cov=agents --cov=mcp --cov-report=xml
+
+  frontend-build:
+    name: Frontend Lint & Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "npm"
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install Frontend Dependencies
+        working-directory: ./frontend
+        run: npm ci
+
+      - name: Lint Frontend
+        working-directory: ./frontend
+        run: npm run lint
+
+      - name: Build Next.js Production Bundle
+        working-directory: ./frontend
+        run: npm run build
