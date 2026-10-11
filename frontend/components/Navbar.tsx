@@ -34,6 +34,12 @@ export function Navbar() {
             <span className="text-xs ml-1.5 px-1.5 py-0.5 rounded bg-cyan-500/20 text-cyan-400 font-semibold border border-cyan-500/30">AI</span>
           </div>
         </Link>
+        <Link
+          href="/demo"
+          className="ml-2 hidden md:flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 text-cyan-300 text-xs font-medium transition"
+        >
+          <span>🎬 Download Demo</span>
+        </Link>
       </div>
 
       <div className="flex items-center gap-4">

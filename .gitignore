@@ -74,3 +74,9 @@ ml/saved_models/*.joblib
 ml/saved_models/*.pkl
 dl/models/*.pt
 dl/models/*.bin
+
+# Demo Video Binaries
+*.mp4
+*.gif
+medassist_demo.*
+frontend/public/medassist_demo.*
